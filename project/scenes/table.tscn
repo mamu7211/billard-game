@@ -30,6 +30,7 @@ z_index = 20
 [node name="white-ball" parent="table" instance=ExtResource( 4 )]
 position = Vector2( 290, 0 )
 z_index = 10
+type = 0
 
 [node name="table-sprite" type="Sprite" parent="table"]
 scale = Vector2( 3, 3 )
@@ -128,7 +129,6 @@ type = 1
 [node name="ball-f-1" parent="table" instance=ExtResource( 4 )]
 position = Vector2( -70.4283, 0.738098 )
 type = 2
-number = 1
 
 [node name="ball-f-2" parent="table" instance=ExtResource( 4 )]
 position = Vector2( -181.523, -20.8511 )
@@ -162,37 +162,29 @@ number = 7
 
 [node name="ball-h-1" parent="table" instance=ExtResource( 4 )]
 position = Vector2( -220.85, 43.9792 )
-type = 3
-number = 1
 
 [node name="ball-h-2" parent="table" instance=ExtResource( 4 )]
 position = Vector2( -221.378, -40.7929 )
-type = 3
 number = 2
 
 [node name="ball-h-3" parent="table" instance=ExtResource( 4 )]
 position = Vector2( -181.853, 21.5098 )
-type = 3
 number = 3
 
 [node name="ball-h-4" parent="table" instance=ExtResource( 4 )]
 position = Vector2( -106.717, 21.0342 )
-type = 3
 number = 4
 
 [node name="ball-h-5" parent="table" instance=ExtResource( 4 )]
 position = Vector2( -106.201, -21.6477 )
-type = 3
 number = 5
 
 [node name="ball-h-6" parent="table" instance=ExtResource( 4 )]
 position = Vector2( -181.865, -61.9714 )
-type = 3
 number = 6
 
 [node name="ball-h-7" parent="table" instance=ExtResource( 4 )]
 position = Vector2( -218.771, 85.6163 )
-type = 3
 number = 7
 
 [connection signal="reset_sig" from="." to="table" method="_on_game_reset_sig"]
