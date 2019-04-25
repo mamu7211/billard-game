@@ -1,13 +1,18 @@
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+signal shot(impulse)
 
-# Called when the node enters the scene tree for the first time.
+var cue_sprite : Sprite
+
 func _ready():
-	pass # Replace with function body.
+	cue_sprite = find_node("cue-sprite")
 
 func _process(delta):
-	rotation = get_parent().get_local_mouse_position().angle()
-	
+	pass
+
+func _input(event):
+	if event is InputEventMouseButton:
+		print("Shot...")
+		var impulse : Vector2 = Vector2(-1,0).rotated(cue_sprite.rotation) * 700;
+		emit_signal("shot",impulse)
+		hide()

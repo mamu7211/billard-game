@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scripts/table.gd" type="Script" id=2]
 [ext_resource path="res://scenes/cue.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/ball.tscn" type="PackedScene" id=4]
 [ext_resource path="res://images/table.png" type="Texture" id=5]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 0, 0, 0, 100, 10, 110, 200, 110, 210, 100, 210, 0 )
 
 [node name="game" type="Node2D"]
 script = ExtResource( 1 )
@@ -31,8 +34,61 @@ texture = ExtResource( 5 )
 
 [node name="wall-group" type="StaticBody2D" parent="table"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="table/wall-group"]
-build_mode = 1
-polygon = PoolVector2Array( 40, -190, 340, -190, 370, -220, 400, -220, 410, -210, 410, -180, 380, -150, 380, 160, 413, 184, 383, 223, 350, 190, 40, 190, 22, 204, 19, 230, -20, 230, -23, 204, -40, 190, -360, 190, -380, 220, -410, 220, -420, 210, -390, 160, -390, -170, -410, -190, -410, -220, -380, -220, -350, -190, -40, -190, -20, -210, -20, -230, 0, -230, 0, -410, 0, -410, -660, -410, -660, 380, 590, 380, 600, -410, 0, -410, 0, -230, 20, -230, 20, -210 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="table/wall-group"]
+position = Vector2( -361.574, -305.396 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="table/wall-group"]
+position = Vector2( -241.349, -305.396 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="table/wall-group"]
+position = Vector2( 28.8758, -305.171 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="table/wall-group"]
+position = Vector2( 151.495, -305.126 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="table/wall-group"]
+position = Vector2( -151.492, 305.519 )
+rotation = 3.14159
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="table/wall-group"]
+position = Vector2( -30.8949, 305.37 )
+rotation = 3.14159
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="table/wall-group"]
+position = Vector2( 238.508, 305.37 )
+rotation = 3.14159
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="table/wall-group"]
+position = Vector2( 361.492, 305.37 )
+rotation = 3.14159
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="table/wall-group"]
+position = Vector2( -496.591, 40.7867 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="table/wall-group"]
+position = Vector2( -497.237, 169.377 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="table/wall-group"]
+position = Vector2( 497.476, -169.573 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="table/wall-group"]
+position = Vector2( 497.16, -40.4475 )
+rotation = 1.5708
+shape = SubResource( 1 )
 
 [connection signal="reset_sig" from="." to="table" method="_on_game_reset_sig"]
+[connection signal="shot" from="table/cue-stick" to="table" method="_on_cuestick_shot"]
