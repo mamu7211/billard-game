@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scripts/table.gd" type="Script" id=2]
@@ -8,6 +8,9 @@
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 0, 100, 10, 110, 200, 110, 210, 100, 210, 0 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 74.1643, 72.0076 )
 
 [node name="game" type="Node2D"]
 script = ExtResource( 1 )
@@ -33,6 +36,7 @@ scale = Vector2( 3, 3 )
 texture = ExtResource( 5 )
 
 [node name="wall-group" type="StaticBody2D" parent="table"]
+editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="table/wall-group"]
 position = Vector2( -361.574, -305.396 )
@@ -90,5 +94,115 @@ position = Vector2( 497.16, -40.4475 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
+[node name="hole-group" type="Area2D" parent="table"]
+editor/display_folded = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="table/hole-group"]
+position = Vector2( -439.678, -248.715 )
+rotation = -0.785398
+scale = Vector2( 1, 1 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="table/hole-group"]
+position = Vector2( 436.874, 246.142 )
+rotation = -0.785398
+scale = Vector2( 1, 1 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="table/hole-group"]
+position = Vector2( -438.78, 248.837 )
+rotation = 0.785398
+scale = Vector2( 1, 1 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="table/hole-group"]
+position = Vector2( 432.384, -246.02 )
+rotation = 0.785398
+scale = Vector2( 1, 1 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="table/hole-group"]
+position = Vector2( -1.40155, -280.148 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="table/hole-group"]
+position = Vector2( 4.88519, 280.27 )
+shape = SubResource( 2 )
+
+[node name="black-ball" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -142.282, -1.452 )
+type = 1
+
+[node name="ball-f-1" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -70.4283, 0.738098 )
+type = 2
+number = 1
+
+[node name="ball-f-2" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -181.523, -20.8511 )
+type = 2
+number = 2
+
+[node name="ball-f-3" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -219.835, -80.6962 )
+type = 2
+number = 3
+
+[node name="fall-f-4" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -182.028, 63.3103 )
+type = 2
+number = 4
+
+[node name="ball-f-5" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -220.278, 1.37753 )
+type = 2
+number = 5
+
+[node name="ball-f-6" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -143.118, -42.6593 )
+type = 2
+number = 6
+
+[node name="ball-f-7" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -142.84, 40.2249 )
+type = 2
+number = 7
+
+[node name="ball-h-1" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -220.85, 43.9792 )
+type = 3
+number = 1
+
+[node name="ball-h-2" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -221.378, -40.7929 )
+type = 3
+number = 2
+
+[node name="ball-h-3" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -181.853, 21.5098 )
+type = 3
+number = 3
+
+[node name="ball-h-4" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -106.717, 21.0342 )
+type = 3
+number = 4
+
+[node name="ball-h-5" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -106.201, -21.6477 )
+type = 3
+number = 5
+
+[node name="ball-h-6" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -181.865, -61.9714 )
+type = 3
+number = 6
+
+[node name="ball-h-7" parent="table" instance=ExtResource( 4 )]
+position = Vector2( -218.771, 85.6163 )
+type = 3
+number = 7
+
 [connection signal="reset_sig" from="." to="table" method="_on_game_reset_sig"]
 [connection signal="shot" from="table/cue-stick" to="table" method="_on_cuestick_shot"]
+[connection signal="body_entered" from="table/hole-group" to="table" method="_on_holegroup_body_entered"]

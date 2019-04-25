@@ -19,6 +19,10 @@ config/name="pixel-billard"
 run/main_scene="res://scenes/table.tscn"
 config/icon="res://images/icon.png"
 
+[autoload]
+
+ball_type_enum="*res://scripts/ball_type_enum.gd"
+
 [display]
 
 window/size/width=1200

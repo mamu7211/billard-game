@@ -18,7 +18,6 @@ func _process(delta):
 		else:
 			cue_stick.show()
 
-
 func _on_game_reset_sig():
 	white_ball.queue_free()
 	remove_child(white_ball)
@@ -30,3 +29,8 @@ func _on_game_reset_sig():
 func _on_cuestick_shot(impulse):
 	if white_ball != null:
 		white_ball.apply_impulse(Vector2(),impulse)
+
+
+func _on_holegroup_body_entered(body):
+	print("Hit hole.")
+	_on_game_reset_sig()
