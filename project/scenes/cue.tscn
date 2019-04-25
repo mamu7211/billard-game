@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://images/cue-stick.png" type="Texture" id=1]
+[ext_resource path="res://scripts/cue.gd" type="Script" id=2]
+
+[node name="cue-stick" type="Node2D"]
+position = Vector2( 560, 390 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( 7, -3 )
+script = ExtResource( 2 )
+
