@@ -1,0 +1,34 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="pixel-billard"
+run/main_scene="res://table.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1200
+window/size/height=800
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+quality/shadows/filter_mode=0
+quality/filters/use_nearest_mipmap_filter=true
+environment/default_clear_color=Color( 0.0509804, 0.133333, 0.168627, 1 )
+environment/default_environment="res://default_env.tres"
+quality/filters/anisotropic_filter_level=1

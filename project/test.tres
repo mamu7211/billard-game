@@ -1,0 +1,8 @@
+[gd_resource type="ImageTexture" format=2]
+
+[resource]
+resource_name = "table-resource"
+flags = 0
+lossy_quality = 1.0
+flags = 0
+
