@@ -33,4 +33,8 @@ func _on_cuestick_shot(impulse):
 
 func _on_holegroup_body_entered(body):
 	print("Hit hole.")
-	_on_game_reset_sig()
+	if body == white_ball:
+		_on_game_reset_sig()
+	else:
+		body.queue_free()
+		

@@ -4,7 +4,7 @@
 [ext_resource path="res://images/ball-textures.png" type="Texture" id=2]
 
 [sub_resource type="PhysicsMaterial" id=2]
-bounce = 5.0
+bounce = 100.0
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
@@ -12,6 +12,7 @@ radius = 20.0
 [node name="Node2D" type="RigidBody2D"]
 position = Vector2( 580, 390 )
 physics_material_override = SubResource( 2 )
+contacts_reported = 10
 linear_damp = 1.0
 angular_damp = 128.0
 script = ExtResource( 1 )

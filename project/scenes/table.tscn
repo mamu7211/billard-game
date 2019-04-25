@@ -9,8 +9,8 @@
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 0, 100, 10, 110, 200, 110, 210, 100, 210, 0 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 74.1643, 72.0076 )
+[sub_resource type="CircleShape2D" id=2]
+radius = 21.206
 
 [node name="game" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,7 +20,7 @@ __meta__ = {
 }
 
 [node name="table" type="Node2D" parent="."]
-position = Vector2( 600, 510 )
+position = Vector2( 617.368, 380.526 )
 script = ExtResource( 2 )
 
 [node name="cue-stick" parent="table" instance=ExtResource( 3 )]
@@ -36,7 +36,6 @@ scale = Vector2( 3, 3 )
 texture = ExtResource( 5 )
 
 [node name="wall-group" type="StaticBody2D" parent="table"]
-editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="table/wall-group"]
 position = Vector2( -361.574, -305.396 )
@@ -95,38 +94,31 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="hole-group" type="Area2D" parent="table"]
-editor/display_folded = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="table/hole-group"]
-position = Vector2( -439.678, -248.715 )
-rotation = -0.785398
-scale = Vector2( 1, 1 )
-shape = SubResource( 2 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="table/hole-group"]
-position = Vector2( 436.874, 246.142 )
-rotation = -0.785398
-scale = Vector2( 1, 1 )
-shape = SubResource( 2 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="table/hole-group"]
-position = Vector2( -438.78, 248.837 )
-rotation = 0.785398
-scale = Vector2( 1, 1 )
-shape = SubResource( 2 )
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="table/hole-group"]
-position = Vector2( 432.384, -246.02 )
-rotation = 0.785398
-scale = Vector2( 1, 1 )
-shape = SubResource( 2 )
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="table/hole-group"]
-position = Vector2( -1.40155, -280.148 )
-shape = SubResource( 2 )
+pause_mode = 1
+position = Vector2( -0.995239, 3.98053 )
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="table/hole-group"]
-position = Vector2( 4.88519, 280.27 )
+position = Vector2( -0.846863, 200.549 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="table/hole-group"]
+position = Vector2( 392.901, 194.855 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="table/hole-group"]
+position = Vector2( 392.048, -203.59 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="table/hole-group"]
+position = Vector2( -1.27814, -210.416 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="table/hole-group"]
+position = Vector2( -391.191, -203.59 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="table/hole-group"]
+position = Vector2( -390.338, 195.708 )
 shape = SubResource( 2 )
 
 [node name="black-ball" parent="table" instance=ExtResource( 4 )]
