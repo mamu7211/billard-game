@@ -4,7 +4,7 @@ var initial_position : Vector2 = Vector2()
 
 enum BALL_TYPE {WHITE, BLACK, FULL, HALF}
 
-export(BALL_TYPE) var type = BALL_TYPE.HALF
+export(BALL_TYPE) var type = BALL_TYPE.WHITE
 export(int) var number = 1
 
 var offset : int = 0

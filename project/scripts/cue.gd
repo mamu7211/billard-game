@@ -12,7 +12,7 @@ func _ready():
 func _process(delta):
 	if !loading && loaded>=0.01:
 		print("Shooting")
-		var impulse : Vector2 = Vector2(-clamp(loaded,0,1),0).rotated(cue_sprite.rotation) * 2000;
+		var impulse : Vector2 = Vector2(-clamp(loaded,0,1),0).rotated(cue_sprite.rotation) * 3000;
 		reset()
 		emit_signal("shot",impulse)
 	elif loading && loaded <=1.5:
