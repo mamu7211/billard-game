@@ -4,12 +4,14 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-var poi = Vector2()
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	connect("reset_sig",self,"reset_sig_handler",[get_node("root")])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func reset_sig_handler():
+	print("Reset received...")
+	

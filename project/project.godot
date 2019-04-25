@@ -16,8 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="pixel-billard"
-run/main_scene="res://table.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://scenes/table.tscn"
+config/icon="res://images/icon.png"
 
 [display]
 
@@ -30,5 +30,5 @@ quality/driver/driver_name="GLES2"
 quality/shadows/filter_mode=0
 quality/filters/use_nearest_mipmap_filter=true
 environment/default_clear_color=Color( 0.0509804, 0.133333, 0.168627, 1 )
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://resources/default_env.tres"
 quality/filters/anisotropic_filter_level=1
