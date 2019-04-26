@@ -10,5 +10,6 @@ func _ready():
 
 func _process(delta):
 	set_offset(Vector2(7 + clamp(get_parent().loaded,0,1) * 20,-3))
-	rotation = get_parent().get_local_mouse_position().angle()	
+	rotation = get_parent().get_local_mouse_position().angle()		
+#	get_child(0).material.set_shader_param("cut_off", 1-clamp(get_parent().loaded,0,1))
 	
