@@ -7,7 +7,7 @@
 position = Vector2( 571.785, 373.859 )
 frames = ExtResource( 1 )
 animation = "switch-off"
-frame = 1
+frame = 2
 speed_scale = 2.0
 playing = true
 script = ExtResource( 2 )

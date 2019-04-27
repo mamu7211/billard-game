@@ -17,7 +17,7 @@ func set_player(player):
 	if current_player == 1:
 		set_sprite_frames(frames_player_1)
 	else:
-		set_sprite_frames(frames_player_1)
+		set_sprite_frames(frames_player_2)
 		
 
 func _process(delta):
