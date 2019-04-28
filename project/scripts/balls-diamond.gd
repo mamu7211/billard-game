@@ -1,6 +1,6 @@
 extends Node2D
 
-const VELOCITY_THRESHOLD = 2
+const VELOCITY_THRESHOLD = 5
 
 signal movement_started
 signal movement_ended
@@ -26,5 +26,9 @@ func _process(delta):
 		
 	if !moving && wasMoving:
 		print("Moving ended...")
+		for ball in self.get_children():
+			if ball is RigidBody2D:
+				var body : RigidBody2D = ball
+				body.linear_velocity = Vector2()
+		
 		emit_signal("movement_ended")
-	

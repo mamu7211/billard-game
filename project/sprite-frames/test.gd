@@ -17,5 +17,7 @@ func _input(event):
 			$player2.active=true
 		elif event.scancode == KEY_3:
 			$player1.active=true
-			$player2.active=true			
+			$player2.active=true
+		elif event.scancode == KEY_F:
+			$"fail-sign".play("switch-on")
 	

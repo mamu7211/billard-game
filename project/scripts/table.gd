@@ -84,7 +84,7 @@ func _on_ballsdiamond_movement_ended():
 	
 	balls_in_round.clear()
 	$"cue-stick".show()
-	$"cue-stick".position = find_node("white-ball").position
+	$"cue-stick".position = white_ball.position
 
 func _process_balls():
 	if balls_in_round.size() == 0:
