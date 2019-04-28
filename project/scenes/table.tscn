@@ -3,9 +3,9 @@
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scripts/table.gd" type="Script" id=2]
 [ext_resource path="res://scenes/cue.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/ball.tscn" type="PackedScene" id=4]
-[ext_resource path="res://images/table.png" type="Texture" id=5]
-[ext_resource path="res://scenes/balls-diamond.tscn" type="PackedScene" id=6]
+[ext_resource path="res://images/table.png" type="Texture" id=4]
+[ext_resource path="res://scenes/balls-diamond.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/player-stats.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 17.434
@@ -25,31 +25,28 @@ script = ExtResource( 2 )
 position = Vector2( 290, 0 )
 z_index = 20
 
-[node name="white-ball" parent="table" instance=ExtResource( 4 )]
-position = Vector2( 290, 0 )
-z_index = 10
-
 [node name="table-sprite" type="Sprite" parent="table"]
 scale = Vector2( 3, 3 )
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 
 [node name="wall-group" type="StaticBody2D" parent="table"]
+editor/display_folded = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="table/wall-group"]
-polygon = PoolVector2Array( -351.25, -195.034, -392.276, -235.703, -428.306, -199.672, -387.337, -160.439, -386.772, 9.69934, -498.391, 9.21402, -500.781, -186.838, -501.851, -297.784, 2.58093, -295.644, 1.21002, -228.568, -17.3405, -228.568, -39.4585, -194.321 )
+polygon = PoolVector2Array( -351.25, -195.034, -371.948, -246.196, -426.098, -239.044, -436.826, -188.47, -387.337, -160.439, -386.772, 9.69934, -498.391, 9.21402, -500.781, -186.838, -501.851, -297.784, 2.58093, -295.644, -2.49237, -234.302, -24.2329, -229.954, -39.4585, -194.321 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="table/wall-group"]
 scale = Vector2( -1, 1 )
-polygon = PoolVector2Array( -348.144, -193.669, -392.688, -237.495, -429.79, -202.534, -387.337, -160.439, -386.772, 9.69934, -498.391, 9.21402, -500.781, -186.838, -501.851, -297.784, 2.58093, -295.644, 2.58093, -228.577, -18.4668, -228.577, -39.8713, -193.616 )
+polygon = PoolVector2Array( -348.144, -193.669, -370.82, -245.685, -424.458, -231.892, -440.294, -191.535, -387.337, -160.439, -386.772, 9.69934, -498.391, 9.21402, -500.781, -186.838, -501.851, -297.784, 2.58093, -295.644, 2.09711, -234.302, -24.3868, -230.349, -39.8713, -193.616 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="table/wall-group"]
 rotation = 3.14159
-polygon = PoolVector2Array( -348.144, -193.669, -392.688, -237.495, -429.79, -202.534, -387.337, -160.439, -386.772, 9.69934, -498.391, 9.21402, -500.781, -186.838, -501.851, -297.784, 2.58093, -295.644, 2.58093, -228.577, -18.4668, -228.577, -39.8713, -193.616 )
+polygon = PoolVector2Array( -348.144, -193.669, -375.974, -241.509, -421.281, -229.736, -433.767, -189.781, -388.046, -155.447, -386.772, 9.69934, -498.391, 9.21402, -500.781, -186.838, -501.851, -297.784, 2.58093, -295.644, 1.70245, -233.712, -20.4334, -231.736, -39.8713, -193.616 )
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="table/wall-group"]
 rotation = 3.14159
 scale = Vector2( -1, 1 )
-polygon = PoolVector2Array( -350.945, -194.281, -392.688, -237.495, -429.79, -202.534, -387.337, -160.439, -386.772, 9.69934, -498.391, 9.21402, -500.781, -186.838, -501.851, -297.784, 2.58093, -295.644, 2.58093, -228.577, -18.4668, -228.577, -39.8713, -193.616 )
+polygon = PoolVector2Array( -345.598, -192.602, -381.094, -237.023, -430.608, -229.118, -433.52, -189.173, -386.707, -155.445, -386.772, 9.69934, -498.391, 9.21402, -500.781, -186.838, -501.851, -297.784, 2.58093, -295.644, 2.25043, -233.317, -24.6287, -228.573, -39.8713, -193.616 )
 
 [node name="hole-group" type="Area2D" parent="table"]
 pause_mode = 1
@@ -79,9 +76,25 @@ shape = SubResource( 1 )
 position = Vector2( -393.397, 198.767 )
 shape = SubResource( 1 )
 
-[node name="balls-diamond" parent="table" instance=ExtResource( 6 )]
+[node name="balls-diamond" parent="table" instance=ExtResource( 5 )]
 position = Vector2( -3.48193, -6.10352e-005 )
+
+[node name="player1" parent="table" instance=ExtResource( 6 )]
+position = Vector2( -347.543, -299.806 )
+scale = Vector2( 2, 2 )
+animation = "on"
+frame = 0
+active = true
+player = 1
+
+[node name="player2" parent="table" instance=ExtResource( 6 )]
+position = Vector2( 350.865, -297.857 )
+scale = Vector2( 2, 2 )
+animation = "off"
+frame = 0
 
 [connection signal="reset_sig" from="." to="table" method="_on_game_reset_sig"]
 [connection signal="shot" from="table/cue-stick" to="table" method="_on_cuestick_shot"]
 [connection signal="body_entered" from="table/hole-group" to="table" method="_on_holegroup_body_entered"]
+[connection signal="movement_ended" from="table/balls-diamond" to="table" method="_on_ballsdiamond_movement_ended"]
+[connection signal="movement_started" from="table/balls-diamond" to="table" method="_on_ballsdiamond_movement_started"]

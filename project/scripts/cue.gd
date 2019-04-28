@@ -16,10 +16,9 @@ func _process(delta):
 		reset()
 		emit_signal("shot",impulse)
 	elif loading && loaded <=1.5:
-		print("Loaded=%f" % loaded)
 		loaded += 0.7 * delta
 	elif loaded > 1.5:
-		print("Resetting...")
+		print("Resetting.")
 		reset()
 
 func _input(event):

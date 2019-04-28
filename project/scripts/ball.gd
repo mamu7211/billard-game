@@ -23,7 +23,7 @@ func _ready():
 		offset = 9
 	if offset > 1 && number < 1 && number > 7:
 		number = 1
-	print("Created Ball: type:%s, number:%d, offset:%d" % [type,number,offset])
+	print("Created Ball: name:%s, type:%s, number:%d, offset:%d" % [name, type,number,offset])
 	sprite = get_child(0)
 	sprite.region_rect.position = Vector2((offset+number-1)*14,1)
 	sprite.region_rect.size = Vector2(14,14)
