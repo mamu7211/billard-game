@@ -2,22 +2,22 @@ extends RigidBody2D
 
 var initial_position : Vector2 = Vector2()
 
-enum BALL_TYPE {WHITE, BLACK, FULL, HALF}
+const ball_type_enum = preload("res://scripts/ball_type_enum.gd")
 
-export(BALL_TYPE) var type = BALL_TYPE.WHITE
+export(ball_type_enum.BALL_TYPE) var type = ball_type_enum.BALL_TYPE.WHITE
 export(int) var number = 1
 
 var offset : int = 0
 var sprite : Sprite
 
 func _ready():	
-	if type == BALL_TYPE.WHITE:
+	if type == ball_type_enum.BALL_TYPE.WHITE:
 		number = 1
 		offset = 0
-	elif type == BALL_TYPE.BLACK:
+	elif type == ball_type_enum.BALL_TYPE.BLACK:
 		number = 1
 		offset = 1
-	elif type == BALL_TYPE.FULL:
+	elif type == ball_type_enum.BALL_TYPE.FULL:
 		offset = 2
 	else:
 		offset = 9

@@ -1,6 +1,9 @@
 extends Node2D
 
 var ball_scene = preload("res://scenes/ball.tscn") # Will load when parsing the script.
+
+var ball_type_enum = preload("res://scripts/ball_type_enum.gd")
+
 var white_ball_origin : Vector2 = Vector2()
 var cue_stick : Node2D
 var current_player : int = 1
@@ -9,6 +12,8 @@ var allow_shot : bool = false
 var balls_in_round = []
 var white_ball : RigidBody2D
 
+var player_ball_types = [ball_type_enum.BALL_TYPE.UNDEFINED, ball_type_enum.BALL_TYPE.UNDEFINED]
+
 func _ready():
 	white_ball = find_node("white-ball")
 	white_ball_origin = white_ball.position
@@ -16,7 +21,7 @@ func _ready():
 	_on_ballsdiamond_movement_ended()	
 
 func _process(delta):
-	allow_shot = white_ball!=null && white_ball.linear_velocity.length()<2
+	allow_shot = white_ball!=null && !white_ball.is_queued_for_deletion() && white_ball.linear_velocity.length()<2
 	if allow_shot:
 		if white_ball != null:
 			cue_stick = find_node("cue-stick")
@@ -35,28 +40,16 @@ func _on_cuestick_shot(impulse):
 		print("No shots allowed...")
 
 func _on_holegroup_body_entered(body):
-	print("Hit hole.")
+	print("Hit hole %s." % body.type)
 	
-	var isWhite = body.is_in_group("white")
-	var isBlack = body.is_in_group("black")
-	var isHalf = body.is_in_group("half")
-	var isFull = body.is_in_group("full")
-	
-	var group = "undefined"
-	if body.is_in_group("white"):
-		group = "white" 
-	elif body.is_in_group("black"):
-		group = "black"
-	elif body.is_in_group("half"):
-		group = "half"
-	else:
-		group = "full"
+	var group = ball_type_enum.to_string(body.type)
+	print("Group was %s, enum was %d" % [group,body.type])
+		
+	if ball_type_enum.is_white(body.type):
+		_add_white_ball()
+		_switch_player()
 	
 	body.queue_free()
-	print("Group was %s" % group)
-	
-	if body == white_ball:
-		_add_white_ball()
 	
 	balls_in_round.append(group)
 
@@ -85,6 +78,11 @@ func _on_ballsdiamond_movement_ended():
 	
 	balls_in_round.clear()
 	allow_shot = true
+	
+	var player_switch_needed = false
+	
+	if ball_type_enum.is_undefined(player_ball_types[current_player-1]):
+		print ("Deciding ball assignment.")
 	
 	print("Starting new Round --------------------------------")
 

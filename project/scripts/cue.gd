@@ -20,6 +20,12 @@ func _process(delta):
 	elif loaded > 1.5:
 		print("Resetting.")
 		reset()
+		
+	get_node("dotted-line").position = get_local_mouse_position()
+	get_node("dotted-line").rotation = get_local_mouse_position().angle() + PI
+	
+	get_node("cue-sprite").set_offset(Vector2(7 + clamp(loaded,0,1) * 18,-3.5))
+	get_node("cue-sprite").rotation = get_local_mouse_position().angle() + PI
 
 func _input(event):
 	if event is InputEventMouseButton:
