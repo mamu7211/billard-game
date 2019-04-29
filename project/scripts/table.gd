@@ -1,7 +1,6 @@
 extends Node2D
 
-var ball_scene = preload("res://scenes/ball.tscn") # Will load when parsing the script.
-
+var ball_scene = preload("res://scenes/ball.tscn")
 var ball_type_enum = preload("res://scripts/ball_type_enum.gd")
 
 var white_ball_origin : Vector2 = Vector2()
@@ -44,9 +43,16 @@ func _on_holegroup_body_entered(body):
 	if ball_type_enum.is_white(body.type):
 		_add_white_ball()
 	
+	balls_in_round.append(body.type)
+	_remove_ball(body)
+	
+	
+
+func _remove_ball(body):
 	body.queue_free()
 	
-	balls_in_round.append(body.type)
+	if ball_type_enum.is_half(body.type) || ball_type_enum.is_full(body.type):
+		$tray.add_ball(body.type,body.number)
 
 func _switch_player():
 	if current_player == 1:

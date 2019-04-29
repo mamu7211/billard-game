@@ -1,11 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scripts/ball.gd" type="Script" id=1]
-[ext_resource path="res://images/ball-textures.png" type="Texture" id=2]
-
-[sub_resource type="PhysicsMaterial" id=1]
-friction = 0.0
-bounce = 128.0
+[ext_resource path="res://physics/ball.tres" type="PhysicsMaterial" id=1]
+[ext_resource path="res://scripts/ball.gd" type="Script" id=2]
+[ext_resource path="res://images/ball-textures.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=2]
 custom_solver_bias = 0.121
@@ -14,16 +11,16 @@ radius = 15.0
 [node name="Node2D" type="RigidBody2D"]
 position = Vector2( 580, 390 )
 mass = 1.4
-physics_material_override = SubResource( 1 )
+physics_material_override = ExtResource( 1 )
 continuous_cd = 2
 contacts_reported = 10
 linear_damp = 1.0
-angular_damp = 2.0
-script = ExtResource( 1 )
+angular_damp = 1.0
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 1, 1, 14, 14 )
 

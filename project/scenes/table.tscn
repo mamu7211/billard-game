@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scripts/table.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://images/table.png" type="Texture" id=4]
 [ext_resource path="res://scenes/balls-diamond.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/player-stats.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/tray.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 17.434
@@ -50,6 +51,7 @@ polygon = PoolVector2Array( -345.598, -192.602, -381.094, -237.023, -430.608, -2
 
 [node name="hole-group" type="Area2D" parent="table"]
 pause_mode = 1
+editor/display_folded = true
 position = Vector2( -0.995239, 3.98053 )
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="table/hole-group"]
@@ -92,6 +94,9 @@ position = Vector2( 350.865, -297.857 )
 scale = Vector2( 2, 2 )
 animation = "off"
 frame = 0
+
+[node name="tray" parent="table" instance=ExtResource( 7 )]
+position = Vector2( -548.659, -210.418 )
 
 [connection signal="reset_sig" from="." to="table" method="_on_game_reset_sig"]
 [connection signal="shot" from="table/cue-stick" to="table" method="_on_cuestick_shot"]
