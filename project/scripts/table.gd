@@ -5,10 +5,8 @@ var ball_type_enum = preload("res://scripts/ball_type_enum.gd")
 
 var white_ball_origin : Vector2 = Vector2()
 var cue_stick : Node2D
-var current_player : int = 1
-var other_player : int = 2
-var owns_halfs : int = 0
-var allow_shot : bool = false
+var active_player
+var other_player
 var balls_in_round = []
 var white_ball : RigidBody2D
 var player_switch_needed : bool = false
@@ -21,7 +19,10 @@ func _ready():
 	white_ball = find_node("white-ball")
 	white_ball_origin = white_ball.position
 	cue_stick = find_node("cue-stick")
-	_on_ballsdiamond_movement_ended()	
+	active_player = $player1
+	active_player.active = true
+	other_player = $player2
+	_on_ballsdiamond_movement_ended()
 
 func _process(delta):
 	pass
@@ -35,50 +36,45 @@ func _on_cuestick_shot(impulse):
 	else:
 		print("No shots allowed...")
 
-func _on_holegroup_body_entered(body):
+func _on_holegroup_body_entered(body : RigidBody2D):
 	print("Hit hole %s." % ball_type_enum.to_string(body.type) )
 	
-	var group = ball_type_enum.to_string(body.type)
+	body.visible = false
+	body.get_parent().remove_child(body)
 	
-	if ball_type_enum.is_white(body.type):
-		_add_white_ball()
+	balls_in_round.append(body)
 	
-	balls_in_round.append(body.type)
-	_remove_ball(body)
-	
-	
-
-func _remove_ball(body):
-	body.queue_free()
-	
+	if active_player.type == ball_type_enum.BALL_TYPE.UNDEFINED:
+		_first_player_assignment()
+		
 	if ball_type_enum.is_half(body.type) || ball_type_enum.is_full(body.type):
-		$tray.add_ball(body.type,body.number)
-
-func _switch_player():
-	if current_player == 1:
-		$player1.active = false
-		$player2.active = true
-		current_player = 2
-		other_player = 1
+		if body.type == active_player.type:
+			active_player.add_ball(body.number)
+		else:
+			other_player.add_ball(body.number)
 	else:
-		$player1.active = true
-		$player2.active = false
-		current_player = 1
-		other_player = 2
+		print("White or black sunk.")
+
+func _switch_player():	
+	var old = active_player
+	
+	active_player = other_player
+	other_player = old
+	
+	other_player.active = false
+	active_player.active = true
 
 func _on_ballsdiamond_movement_ended():
-	
 	if _round > 0:
 		var list_of_balls = ""
+		var delim = ""
 		for b in balls_in_round:
-			list_of_balls += ball_type_enum.to_string(b) + " "
+			list_of_balls += delim + "'" + ball_type_enum.to_string(b.type)  + "'"
+			delim = ", "
 			
-		print("Round %d ended: %s" % [_round, list_of_balls])
+		print("Round %d ended with balls: %s" % [_round, list_of_balls])
 		
-		if ball_type_enum.is_undefined(player_ball_types[current_player-1]):
-			_first_player_assignment(balls_in_round)
-		else:
-			_process_balls()
+		_process_balls()
 		
 		if player_switch_needed:
 			_switch_player()
@@ -86,7 +82,15 @@ func _on_ballsdiamond_movement_ended():
 	
 	_round += 1;
 	
-	print("Starting Round %d for Player %d [%s] --------------------------------" % [_round, current_player, ball_type_enum.to_string(player_ball_types[current_player-1]) ])	
+	print("Starting Round %d --------------------------------" % _round)	
+	print("Current Player: %s" % active_player.to_string())
+	print("Other Player: %s" % other_player.to_string())
+	for b in balls_in_round:
+		if ball_type_enum.is_white(b.type):
+			print("White ball will be added.")
+			_add_white_ball()
+			_switch_player()
+		b.queue_free()
 	
 	balls_in_round.clear()
 	$"cue-stick".show()
@@ -98,28 +102,21 @@ func _process_balls():
 	else:
 		player_switch_needed = false
 		for b in balls_in_round:
-			if b != player_ball_types[current_player-1]:
+			if b.type != active_player.type:
 				player_switch_needed = true
 
-func _first_player_assignment(balls_in_round):
+func _first_player_assignment():
 	print ("Deciding ball assignment.")
-	var first = ball_type_enum.BALL_TYPE.UNDEFINED
-
 	if balls_in_round.size() > 0:
-		first = balls_in_round[0]
-		if ball_type_enum.is_half(first):
-			player_ball_types[current_player-1] = ball_type_enum.BALL_TYPE.HALF
-			player_ball_types[other_player-1] = ball_type_enum.BALL_TYPE.FULL
+		var first = balls_in_round[0]
+		if ball_type_enum.is_half(first.type):
+			print("Assigning half to Player %d" % active_player.player_number)
+			active_player.type = ball_type_enum.BALL_TYPE.HALF
+			other_player.type = ball_type_enum.BALL_TYPE.FULL
 		else:
-			player_ball_types[current_player-1] = ball_type_enum.BALL_TYPE.FULL
-			player_ball_types[other_player-1] = ball_type_enum.BALL_TYPE.HALF
-	else:
-		player_switch_needed = true	
-	
-	var i=0
-	for b in balls_in_round:
-		print("Ball %d: %s" % [i, b])
-		i += 1
+			print("Assigning full to Player %d" % active_player.player_number)
+			active_player.type = ball_type_enum.BALL_TYPE.FULL
+			other_player.type = ball_type_enum.BALL_TYPE.HALF
 
 func _contains(type,list):
 	for ball in list:
@@ -137,5 +134,3 @@ func _add_white_ball():
 
 func _on_ballsdiamond_movement_started():
 	$"cue-stick".hide()
-	allow_shot = false
-	pass # Replace with function body.

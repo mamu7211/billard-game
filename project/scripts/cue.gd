@@ -28,9 +28,10 @@ func _process(delta):
 	get_node("cue-sprite").rotation = get_local_mouse_position().angle() + PI
 
 func _input(event):
-	if event is InputEventMouseButton:
-		var mbe : InputEventMouseButton = event
-		loading = mbe.is_pressed()
+	if visible:
+		if event is InputEventMouseButton:
+			var mbe : InputEventMouseButton = event
+			loading = mbe.is_pressed()
 
 func reset():
 	visible = true

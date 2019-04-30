@@ -22,6 +22,8 @@ func _input(event):
 			$player2.active=true
 		elif event.scancode == KEY_F:
 			$"fail-sign".play("switch-on")
-		elif event.scancode == KEY_B:
-			$tray.add_ball(ball_type_enum.BALL_TYPE.HALF,3)
-	
+		elif event.scancode == KEY_B && !Input.is_key_pressed(KEY_B):
+			if $player1.active:
+				$player1.add_ball($player1.balls.size()+1)
+			elif $player2.active:
+				$player2.add_ball($player2.balls.size()+1)

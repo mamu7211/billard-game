@@ -17,7 +17,7 @@ func _process(delta):
 	for ball in self.get_children():
 		if ball is RigidBody2D:
 			var body : RigidBody2D = ball
-			if body.linear_velocity.length() > VELOCITY_THRESHOLD:
+			if body.get_child(1).disabled == false && body.linear_velocity.length() > VELOCITY_THRESHOLD:
 				moving = true
 	
 	if  moving && !wasMoving:

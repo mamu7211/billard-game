@@ -4,11 +4,11 @@
 [ext_resource path="res://scripts/ball.gd" type="Script" id=2]
 [ext_resource path="res://images/ball-textures.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 custom_solver_bias = 0.121
 radius = 15.0
 
-[node name="Node2D" type="RigidBody2D"]
+[node name="ball" type="RigidBody2D"]
 position = Vector2( 580, 390 )
 mass = 1.4
 physics_material_override = ExtResource( 1 )
@@ -18,13 +18,13 @@ linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="ball-sprite" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 1, 1, 14, 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+[node name="collision-shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
 one_way_collision_margin = 10.8
 

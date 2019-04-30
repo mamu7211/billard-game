@@ -3,14 +3,16 @@
 [ext_resource path="res://sprite-frames/player-1-frames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player-stats.gd" type="Script" id=2]
 
-
-[node name="AnimatedSprite" type="AnimatedSprite"]
-position = Vector2( 571.785, 373.859 )
+[node name="player_stats" type="AnimatedSprite"]
+position = Vector2( 1.72321, -2.4007 )
 frames = ExtResource( 1 )
 animation = "switch-off"
-frame = 3
+frame = 1
 speed_scale = 2.0
 playing = true
 script = ExtResource( 2 )
+
+[node name="balls" type="Node2D" parent="."]
+position = Vector2( 53.9756, -0.953873 )
 
 [connection signal="animation_finished" from="." to="." method="_on_AnimatedSprite_animation_finished"]

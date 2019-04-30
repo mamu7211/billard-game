@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scripts/table.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://images/table.png" type="Texture" id=4]
 [ext_resource path="res://scenes/balls-diamond.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/player-stats.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/tray.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 17.434
@@ -19,7 +18,7 @@ __meta__ = {
 }
 
 [node name="table" type="Node2D" parent="."]
-position = Vector2( 617.368, 380.526 )
+position = Vector2( 611.397, 405.404 )
 script = ExtResource( 2 )
 
 [node name="cue-stick" parent="table" instance=ExtResource( 3 )]
@@ -82,21 +81,17 @@ shape = SubResource( 1 )
 position = Vector2( -3.48193, -6.10352e-005 )
 
 [node name="player1" parent="table" instance=ExtResource( 6 )]
-position = Vector2( -347.543, -299.806 )
-scale = Vector2( 2, 2 )
-animation = "on"
-frame = 0
-active = true
-player = 1
-
-[node name="player2" parent="table" instance=ExtResource( 6 )]
-position = Vector2( 350.865, -297.857 )
+position = Vector2( -355.395, -331.363 )
 scale = Vector2( 2, 2 )
 animation = "off"
 frame = 0
+player = 1
 
-[node name="tray" parent="table" instance=ExtResource( 7 )]
-position = Vector2( -548.659, -210.418 )
+[node name="player2" parent="table" instance=ExtResource( 6 )]
+position = Vector2( -352.103, 339.991 )
+scale = Vector2( 2, 2 )
+animation = "off"
+frame = 0
 
 [connection signal="reset_sig" from="." to="table" method="_on_game_reset_sig"]
 [connection signal="shot" from="table/cue-stick" to="table" method="_on_cuestick_shot"]
