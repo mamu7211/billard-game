@@ -20,7 +20,7 @@ func _ready():
 	white_ball_origin = white_ball.position
 	cue_stick = find_node("cue-stick")
 	active_player = $player1
-	active_player.active = true
+	active_player.set_active(true)
 	other_player = $player2
 	_on_ballsdiamond_movement_ended()
 
@@ -50,14 +50,15 @@ func _on_holegroup_body_entered(body : RigidBody2D):
 	if ball_type_enum.is_half(body.type) || ball_type_enum.is_full(body.type):
 		if body.type == active_player.type:
 			active_player.add_ball(body.number)
+			$"good-hit-sound".play()
 		else:
 			other_player.add_ball(body.number)
+			$"bad-hit-sound".play()
 	else:
-		print("White or black sunk.")
-	if body.type == active_player.type:
-		$"good-hit-sound".play()
-	else:
-		$"bad-hit-sound".play()
+		if active_player.balls.size()==7 && ball_type_enum.is_black(body.type):
+			$"win-hit-sound".play()
+		else:
+			$"fail-hit-sound".play()
 
 func _switch_player():	
 	var old = active_player
@@ -65,8 +66,8 @@ func _switch_player():
 	active_player = other_player
 	other_player = old
 	
-	other_player.active = false
-	active_player.active = true
+	other_player.set_active(false)
+	active_player.set_active(true)
 	
 	$"switch-player".play()
 

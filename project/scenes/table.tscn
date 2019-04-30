@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scripts/table.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://sounds/hole-good.wav" type="AudioStream" id=7]
 [ext_resource path="res://sounds/hole-bad.wav" type="AudioStream" id=8]
 [ext_resource path="res://sounds/switch-player.wav" type="AudioStream" id=9]
+[ext_resource path="res://sounds/hole-black.wav" type="AudioStream" id=10]
+[ext_resource path="res://sounds/hole-win.wav" type="AudioStream" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 17.434
@@ -33,6 +35,7 @@ scale = Vector2( 3, 3 )
 texture = ExtResource( 4 )
 
 [node name="wall-group" type="StaticBody2D" parent="table"]
+editor/display_folded = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="table/wall-group"]
 polygon = PoolVector2Array( -351.25, -195.034, -371.948, -246.196, -426.098, -239.044, -436.826, -188.47, -387.337, -160.439, -386.772, 9.69934, -498.391, 9.21402, -500.781, -186.838, -501.851, -297.784, 2.58093, -295.644, -2.49237, -234.302, -24.2329, -229.954, -39.4585, -194.321 )
@@ -52,6 +55,7 @@ polygon = PoolVector2Array( -345.598, -192.602, -381.094, -237.023, -430.608, -2
 
 [node name="hole-group" type="Area2D" parent="table"]
 pause_mode = 1
+editor/display_folded = true
 position = Vector2( -0.995239, 3.98053 )
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="table/hole-group"]
@@ -82,17 +86,17 @@ shape = SubResource( 1 )
 position = Vector2( -3.48193, -6.10352e-005 )
 
 [node name="player1" parent="table" instance=ExtResource( 6 )]
-position = Vector2( -355.395, -329.383 )
-scale = Vector2( 2, 2 )
-animation = "off"
-frame = 0
+margin_left = -425.164
+margin_top = -344.62
+margin_right = -225.164
+margin_bottom = -301.62
 player = 1
 
 [node name="player2" parent="table" instance=ExtResource( 6 )]
-position = Vector2( 351.043, -329.08 )
-scale = Vector2( 2, 2 )
-animation = "off"
-frame = 0
+margin_left = 230.407
+margin_top = -349.242
+margin_right = 430.407
+margin_bottom = -306.242
 
 [node name="good-hit-sound" type="AudioStreamPlayer2D" parent="table"]
 position = Vector2( -0.995239, 3.98053 )
@@ -103,6 +107,13 @@ stream = ExtResource( 8 )
 
 [node name="switch-player" type="AudioStreamPlayer2D" parent="table"]
 stream = ExtResource( 9 )
+
+[node name="fail-hit-sound" type="AudioStreamPlayer2D" parent="table"]
+stream = ExtResource( 10 )
+
+[node name="win-hit-sound" type="AudioStreamPlayer2D" parent="table"]
+stream = ExtResource( 11 )
+attenuation = 5.85634
 
 [connection signal="reset_sig" from="." to="table" method="_on_game_reset_sig"]
 [connection signal="shot" from="table/cue-stick" to="table" method="_on_cuestick_shot"]

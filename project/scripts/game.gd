@@ -7,6 +7,7 @@ var poi : Vector2 = Vector2()
 
 func _ready():
 	reset = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

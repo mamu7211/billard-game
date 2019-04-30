@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://sprite-frames/player-1-frames.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://fonts/handlee.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/player-stats.gd" type="Script" id=2]
 
-[node name="player_stats" type="AnimatedSprite"]
-position = Vector2( -0.0828127, 0 )
-frames = ExtResource( 1 )
-animation = "switch-off"
-frame = 1
-speed_scale = 2.0
-playing = true
+[node name="label" type="Label"]
+modulate = Color( 1, 1, 1, 0.196078 )
+anchor_bottom = 0.17
+margin_right = 146.0
+margin_bottom = -93.0
+custom_fonts/font = ExtResource( 1 )
+text = "PLAYER 2"
+uppercase = true
 script = ExtResource( 2 )
 
 [node name="balls" type="Node2D" parent="."]
-position = Vector2( 0.0828127, 0 )
+position = Vector2( 69.5, 20 )
 
-[connection signal="animation_finished" from="." to="." method="_on_AnimatedSprite_animation_finished"]
