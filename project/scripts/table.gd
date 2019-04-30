@@ -95,7 +95,7 @@ func _on_ballsdiamond_movement_ended():
 		if ball_type_enum.is_white(b.type):
 			print("White ball will be added.")
 			_add_white_ball()
-			_switch_player()
+			player_switch_needed = true
 		b.queue_free()
 	
 	balls_in_round.clear()
