@@ -54,6 +54,10 @@ func _on_holegroup_body_entered(body : RigidBody2D):
 			other_player.add_ball(body.number)
 	else:
 		print("White or black sunk.")
+	if body.type == active_player.type:
+		$"good-hit-sound".play()
+	else:
+		$"bad-hit-sound".play()
 
 func _switch_player():	
 	var old = active_player
@@ -63,6 +67,8 @@ func _switch_player():
 	
 	other_player.active = false
 	active_player.active = true
+	
+	$"switch-player".play()
 
 func _on_ballsdiamond_movement_ended():
 	if _round > 0:

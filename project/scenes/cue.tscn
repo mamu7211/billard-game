@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/cue.gd" type="Script" id=1]
 [ext_resource path="res://images/cue-stick.png" type="Texture" id=2]
 [ext_resource path="res://images/dotted-line.png" type="Texture" id=3]
+[ext_resource path="res://sounds/cue.wav" type="AudioStream" id=4]
 
 [node name="cue-stick" type="Node2D"]
 position = Vector2( 560, 390 )
@@ -17,4 +18,7 @@ offset = Vector2( 7, -3 )
 [node name="dotted-line" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )
 texture = ExtResource( 3 )
+
+[node name="shot-sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 

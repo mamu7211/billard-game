@@ -12,6 +12,7 @@ position = Vector2( 269.122, 229.263 )
 scale = Vector2( 2, 2 )
 animation = "off"
 frame = 0
+player = 1
 type = 3
 
 [node name="player2" parent="." instance=ExtResource( 2 )]

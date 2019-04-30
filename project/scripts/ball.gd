@@ -27,3 +27,13 @@ func _ready():
 	sprite = get_child(0)
 	sprite.region_rect.position = Vector2((offset+number-1)*14,1)
 	sprite.region_rect.size = Vector2(14,14)
+
+func _on_ball_body_entered(body):
+	if body is RigidBody2D:
+		if body.linear_velocity.length() > 90:
+			$"hit-sound".volume_db = 0.5
+			$"hit-sound".play()
+	else:
+		if self.linear_velocity.length() > 60:
+			$"wall-sound".play()
+

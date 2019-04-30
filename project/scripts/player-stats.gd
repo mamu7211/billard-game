@@ -36,10 +36,12 @@ func add_ball(number):
 	var ball = ball_scene.instance()
 	ball.type = type
 	ball.number = number
-	ball.position = Vector2(26*(balls.size()-1),0)
+	var dir = 1
+	if player_number==2: 
+		dir=-1
+	ball.position = Vector2(dir * (55 + 18*(balls.size()-1)),0)
 	ball.collision_layer = 3
 	ball.collision_mask = 3
-	ball.scale = Vector2(1,3)
 	$balls.add_child(ball)
 
 func to_string():

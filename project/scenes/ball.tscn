@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://physics/ball.tres" type="PhysicsMaterial" id=1]
 [ext_resource path="res://scripts/ball.gd" type="Script" id=2]
 [ext_resource path="res://images/ball-textures.png" type="Texture" id=3]
+[ext_resource path="res://sounds/klick.wav" type="AudioStream" id=4]
+[ext_resource path="res://sounds/wall.wav" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 custom_solver_bias = 0.121
@@ -13,7 +15,8 @@ position = Vector2( 580, 390 )
 mass = 1.4
 physics_material_override = ExtResource( 1 )
 continuous_cd = 2
-contacts_reported = 10
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource( 2 )
@@ -28,3 +31,10 @@ region_rect = Rect2( 1, 1, 14, 14 )
 shape = SubResource( 1 )
 one_way_collision_margin = 10.8
 
+[node name="hit-sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[node name="wall-sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[connection signal="body_entered" from="." to="." method="_on_ball_body_entered"]
